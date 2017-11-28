@@ -4,12 +4,8 @@ pipeline {
         stage('build') {
             steps {
                 sh 'python --version'
-                sh 'ls'
-                sh 'docker info'
-                sh 'docker build -t dgencare/helloword:${BUILD_NUMBER} .'
-                sh 'docker tag dgencare/helloword:${BUILD_NUMBER} dgencare/helloword:latest'
-                sh 'docker images'
             }
+            def app = docker.build "dgencare/helloword:${env.BUILD_NUMBER}"
         }
     }
 }
