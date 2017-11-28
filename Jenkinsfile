@@ -1,11 +1,6 @@
-pipeline {
-    agent any
-    stages {
-        stage('build') {
-            steps {
-                sh 'python --version'
-            }
-            def app = docker.build "dgencare/helloword:${env.BUILD_NUMBER}"
-        }
-    }
+node {
+    checkout scm
+
+    def customImage = docker.build("dgencare/helloword:${env.BUILD_ID}")
+
 }
